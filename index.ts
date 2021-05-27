@@ -119,8 +119,9 @@ async function readData(filePath: string, department: string) {
     data[3][1] = obj["k"]["是否达成合作意向"];
     data[3][3] = obj["k"]["大搜股助手APP"];
     data[3][5] = obj["k"]["是否建立投资圈群"];
-    data[4][1] = kData[kName]["级别"] || obj["k"]["级别"];
-    data[4][3] = kData[kName]["是否合格"] || obj["k"]["是否合格"];
+    data[4][1] = (kData[kName] && kData[kName]["级别"]) || obj["k"]["级别"];
+    data[4][3] =
+      (kData[kName] && kData[kName]["是否合格"]) || obj["k"]["是否合格"];
     data[4][5] = department;
 
     rowCount = 7;
@@ -313,23 +314,22 @@ function readYYJLData(filePath: string) {
 }
 
 async function main() {
-  const sourceResult = await inquirer.prompt({
+  const sourceResult: any = await inquirer.prompt({
     type: "input",
     message: "请输入文件地址",
     name: "data",
   });
-  console.log(sourceResult.data);
   let sourceUrl = sourceResult.data as string;
   sourceUrl = sourceUrl.replace(/\'/g, "").replace(/\"/g, "").trim();
 
-  const oldFileResult = await inquirer.prompt({
+  const oldFileResult: any = await inquirer.prompt({
     type: "input",
     message: "请输入上次生成的文件(无则留空)",
     name: "data",
   });
   let oldFilePath = oldFileResult.data as string;
   oldFilePath = oldFilePath.replace(/\'/g, "").replace(/\"/g, "").trim();
-  const departmentResult = await inquirer.prompt({
+  const departmentResult: any = await inquirer.prompt({
     type: "input",
     message: "请输入该文件所属的业务部门",
     name: "data",
