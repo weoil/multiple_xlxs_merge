@@ -1,0 +1,19 @@
+{
+  "name": "k_c_merge",
+  "version": "1.0.0",
+  "description": "徐总的多个表格合并为单K对应C的",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": "./dist/index.js",
+  "dependencies": {
+    "@types/node-xlsx": "^0.15.1",
+    "eslint": "^7.27.0",
+    "inquirer": "^8.1.0",
+    "node-xlsx": "^0.16.1",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^15.6.1"
+  }
+}
