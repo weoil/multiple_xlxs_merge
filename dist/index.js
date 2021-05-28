@@ -123,8 +123,9 @@ async function readData(filePath, department) {
         data[3][1] = obj["k"]["是否达成合作意向"];
         data[3][3] = obj["k"]["大搜股助手APP"];
         data[3][5] = obj["k"]["是否建立投资圈群"];
-        data[4][1] = kData[kName]["级别"] || obj["k"]["级别"];
-        data[4][3] = kData[kName]["是否合格"] || obj["k"]["是否合格"];
+        data[4][1] = (kData[kName] && kData[kName]["级别"]) || obj["k"]["级别"];
+        data[4][3] =
+            (kData[kName] && kData[kName]["是否合格"]) || obj["k"]["是否合格"];
         data[4][5] = department;
         rowCount = 7;
         // 填充C信息
@@ -310,7 +311,6 @@ async function main() {
         message: "请输入文件地址",
         name: "data",
     });
-    console.log(sourceResult.data);
     let sourceUrl = sourceResult.data;
     sourceUrl = sourceUrl.replace(/\'/g, "").replace(/\"/g, "").trim();
     const oldFileResult = await inquirer_1.default.prompt({
